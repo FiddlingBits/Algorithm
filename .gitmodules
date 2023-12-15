@@ -1,0 +1,3 @@
+[submodule "Library/Unity"]
+	path = Library/Unity
+	url = git@github.com:ThrowTheSwitch/Unity.git
