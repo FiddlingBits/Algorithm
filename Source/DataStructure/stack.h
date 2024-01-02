@@ -1,37 +1,29 @@
 /****************************************************************************************************
+ * Pragma
+ ****************************************************************************************************/
+
+#pragma once
+
+/****************************************************************************************************
  * Include
  ****************************************************************************************************/
 
-#include <stdio.h>
-#include "unity_fixture.h"
+#include "list.h"
+#include <stddef.h>
+
+/****************************************************************************************************
+ * Type Definition
+ ****************************************************************************************************/
+
+typedef void (*stack_destroyCallback_t)(void *data);
+typedef struct stack_stack_s stack_stack_t;
 
 /****************************************************************************************************
  * Function Prototype
  ****************************************************************************************************/
 
-static void main_runTestGroups(void);
-
-/****************************************************************************************************
- * Function Definition (Public)
- ****************************************************************************************************/
-
-/*** Main Entry ***/
-int main(int argc, const char *argv[])
-{
-    /*** Start Unity ***/
-    (void)printf("Unity Version: %u.%u.%u\n", UNITY_VERSION_MAJOR, UNITY_VERSION_MINOR, UNITY_VERSION_BUILD);
-    return UnityMain(argc, argv, main_runTestGroups);
-}
-
-/****************************************************************************************************
- * Function Definition (Private)
- ****************************************************************************************************/
-
-/*** Run Test Groups ***/
-static void main_runTestGroups(void)
-{
-    /*** Run Test Groups ***/
-    RUN_TEST_GROUP(list_test)
-    RUN_TEST_GROUP(queue_test)
-    RUN_TEST_GROUP(stack_test)
-}
+extern stack_stack_t *stack_create(const stack_destroyCallback_t DestroyCallback);
+extern void stack_destroy(stack_stack_t * const stack);
+extern void *stack_pop(stack_stack_t * const stack);
+extern void stack_push(stack_stack_t * const stack, void * const data);
+extern size_t stack_size(const stack_stack_t * const Stack);

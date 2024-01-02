@@ -3,7 +3,7 @@ all: Build/Test.exe
 	@echo Run: Build/Test.exe
 	@echo
 	@./Build/Test.exe
-Build/Test.exe: Build/ Build/list.o Build/main.o Build/list_test.o Build/unity_fixture.o Build/unity_memory.o Build/unity.o
+Build/Test.exe: Build/ Build/list.o Build/queue.o Build/stack.o Build/main.o Build/list_test.o Build/queue_test.o Build/stack_test.o Build/unity_fixture.o Build/unity_memory.o Build/unity.o
 	@echo Link: Test.exe
 	@clang Build/*.o -o Build/Test.exe
 Build/:
@@ -18,6 +18,26 @@ Build/list.o: ../../Source/DataStructure/list.c \
   ../../Library/Unity/extras/memory/src/unity_memory.h
 	@echo Compile: list.c
 	@clang -DMAKEFILE_PROJECT -std=c17 -Weverything -I../../Library/Unity/extras/fixture/src/ -I../../Library/Unity/extras/memory/src/ -I../../Library/Unity/src/ -I../../Source/ -I../../Source/DataStructure/ -c ../../Source/DataStructure/list.c -o $@
+Build/queue.o: ../../Source/DataStructure/queue.c \
+  ../../Source/DataStructure/queue.h ../../Source/DataStructure/list.h \
+  ../../Source/project.h \
+  ../../Library/Unity/extras/fixture/src/unity_fixture.h \
+  ../../Library/Unity/src/unity.h \
+  ../../Library/Unity/src/unity_internals.h \
+  ../../Library/Unity/extras/fixture/src/unity_fixture_internals.h \
+  ../../Library/Unity/extras/memory/src/unity_memory.h
+	@echo Compile: queue.c
+	@clang -DMAKEFILE_PROJECT -std=c17 -Weverything -I../../Library/Unity/extras/fixture/src/ -I../../Library/Unity/extras/memory/src/ -I../../Library/Unity/src/ -I../../Source/ -I../../Source/DataStructure/ -c ../../Source/DataStructure/queue.c -o $@
+Build/stack.o: ../../Source/DataStructure/stack.c \
+  ../../Source/DataStructure/stack.h ../../Source/DataStructure/list.h \
+  ../../Source/project.h \
+  ../../Library/Unity/extras/fixture/src/unity_fixture.h \
+  ../../Library/Unity/src/unity.h \
+  ../../Library/Unity/src/unity_internals.h \
+  ../../Library/Unity/extras/fixture/src/unity_fixture_internals.h \
+  ../../Library/Unity/extras/memory/src/unity_memory.h
+	@echo Compile: stack.c
+	@clang -DMAKEFILE_PROJECT -std=c17 -Weverything -I../../Library/Unity/extras/fixture/src/ -I../../Library/Unity/extras/memory/src/ -I../../Library/Unity/src/ -I../../Source/ -I../../Source/DataStructure/ -c ../../Source/DataStructure/stack.c -o $@
 Build/main.o: ../../Test/main.c \
   ../../Library/Unity/extras/fixture/src/unity_fixture.h \
   ../../Library/Unity/src/unity.h \
@@ -35,6 +55,26 @@ Build/list_test.o: ../../Test/DataStructure/list_test.c \
   ../../Library/Unity/extras/memory/src/unity_memory.h
 	@echo Compile: list_test.c
 	@clang -DMAKEFILE_PROJECT -std=c17 -Weverything -I../../Library/Unity/extras/fixture/src/ -I../../Library/Unity/extras/memory/src/ -I../../Library/Unity/src/ -I../../Source/ -I../../Source/DataStructure/ -c ../../Test/DataStructure/list_test.c -o $@
+Build/queue_test.o: ../../Test/DataStructure/queue_test.c \
+  ../../Source/DataStructure/queue.h ../../Source/DataStructure/list.h \
+  ../../Source/project.h \
+  ../../Library/Unity/extras/fixture/src/unity_fixture.h \
+  ../../Library/Unity/src/unity.h \
+  ../../Library/Unity/src/unity_internals.h \
+  ../../Library/Unity/extras/fixture/src/unity_fixture_internals.h \
+  ../../Library/Unity/extras/memory/src/unity_memory.h
+	@echo Compile: queue_test.c
+	@clang -DMAKEFILE_PROJECT -std=c17 -Weverything -I../../Library/Unity/extras/fixture/src/ -I../../Library/Unity/extras/memory/src/ -I../../Library/Unity/src/ -I../../Source/ -I../../Source/DataStructure/ -c ../../Test/DataStructure/queue_test.c -o $@
+Build/stack_test.o: ../../Test/DataStructure/stack_test.c \
+  ../../Source/DataStructure/stack.h ../../Source/DataStructure/list.h \
+  ../../Source/project.h \
+  ../../Library/Unity/extras/fixture/src/unity_fixture.h \
+  ../../Library/Unity/src/unity.h \
+  ../../Library/Unity/src/unity_internals.h \
+  ../../Library/Unity/extras/fixture/src/unity_fixture_internals.h \
+  ../../Library/Unity/extras/memory/src/unity_memory.h
+	@echo Compile: stack_test.c
+	@clang -DMAKEFILE_PROJECT -std=c17 -Weverything -I../../Library/Unity/extras/fixture/src/ -I../../Library/Unity/extras/memory/src/ -I../../Library/Unity/src/ -I../../Source/ -I../../Source/DataStructure/ -c ../../Test/DataStructure/stack_test.c -o $@
 Build/unity_fixture.o: ../../Library/Unity/extras/fixture/src/unity_fixture.c \
   ../../Library/Unity/extras/fixture/src/unity_fixture.h \
   ../../Library/Unity/src/unity.h \

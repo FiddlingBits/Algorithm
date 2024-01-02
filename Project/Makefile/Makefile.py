@@ -12,8 +12,12 @@ import sys
 
 APPLICATION_FILES = [
     "../../Source/DataStructure/list.c",
+    "../../Source/DataStructure/queue.c",
+    "../../Source/DataStructure/stack.c",
     "../../Test/main.c",
-    "../../Test/DataStructure/list_test.c"
+    "../../Test/DataStructure/list_test.c",
+    "../../Test/DataStructure/queue_test.c",
+    "../../Test/DataStructure/stack_test.c"
 ]
 APPLICATION_DEFINES = [
     "-DMAKEFILE_PROJECT"
